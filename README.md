@@ -26,29 +26,20 @@ Run the server
 ## PROGRAM
 ```python
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>MAT MAP</title>
-    </head>
-    <body>
-        <img src="/static/images/matmap.jpg" width ="986" height="782" usemap="#matmap" alt>
-        <MAP name="matmap">
-             <AREA shape="RECT" coords="384,329,457,398"
-                   href = "/meenakshitemple/" Title="meenakshitemple" alt>
-             <AREA shape="RECT" coords="586,130,625,163"
-                   href = "/thousandpillars/" Title="thousandpillars" alt>
-             <AREA shape="RECT" coords="830,194,899,223"
-                   href = "/puthumandapam/" Title="puthumandapam" alt>
-             <AREA shape="RECT"  coords="411,615,506,628"
-                   href = "/southtower/"   Title="southtower" alt>
-             <AREA shape="RECT"  coords="324,116,379,129"
-                   href = "/northtower/"  Title="northtower" alt>
-         
-        </MAP>
+from django.db import models
+from django.contrib import admin
 
-    </body>
-</html>
+class GitDatabase(models.Model):
+    username_primary_key = models.CharField(max_length=30, help_text="User name must be unique", primary_key=True,unique=True)
+    password = models.CharField(max_length=30)
+    firstname = models.CharField(max_length=20)
+    lastname = models.CharField(max_length=20)
+    profile_photo = models.ImageField()
+    email = models.EmailField(max_length=50,unique=True)
+
+class GitAdmin(admin.ModelAdmin):
+    list_display = ('username_primary_key', 'password', 'firstname', 'lastname','profile_photo','email')
+
 ```
 ## OUTPUT
 ![output](/dataproject/django-data.png)
